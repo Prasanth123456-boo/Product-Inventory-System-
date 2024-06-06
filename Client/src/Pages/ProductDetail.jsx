@@ -77,10 +77,10 @@ const ProductDetail = () => {
                         </div>
                         <div className="product-info">
                             <h2>{product.ProductName}</h2>
-                            <p>Product ID: <span className='text-dark fs-3'>{product.ProductID}</span> </p>
-                            <p>Product Code: <span className='text-dark fs-3'>{product.ProductCode}</span> </p>
-                            <p>HSN Code:  <span className='text-dark fs-3'>{product.HSNCode}</span></p>
-                            <p>Total Stock: <span className='text-dark fs-3'>{product.TotalStock}</span> </p>
+                            <p>Product ID : <span className='text-dark fs-3'>{product.ProductID}</span> </p>
+                            <p>Product Code : <span className='text-dark fs-3'>{product.ProductCode}</span> </p>
+                            <p>HSN Code :  <span className='text-dark fs-3'>{product.HSNCode}</span></p>
+                            <p>Total Stock : <span className='text-dark fs-3'>{product.TotalStock}</span> </p>
                             {product.variants.map(variant => (
                                 <div key={variant.id}>
                                     <p><strong>{variant.name}</strong> - {variant.subvariants.map(subvariant => subvariant.option).join(', ')}</p>
