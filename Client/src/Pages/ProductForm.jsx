@@ -4,6 +4,7 @@ import axiosInstance from '../services/axiosInstance';
 import Top from '../Components/Top';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -18,6 +19,7 @@ const AddProduct = () => {
     TotalStock: 0,
     variants: []
   });
+  const notify = () => toast.success("Stock Updated!");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,6 +88,7 @@ const AddProduct = () => {
     axios.post('http://localhost:8000/api/products/', product)
       .then(response => {
         console.log('Product added successfully:', response.data);
+        notify()
       })
       .catch(error => {
         console.error('There was an error adding the product:', error);
@@ -98,6 +101,7 @@ const AddProduct = () => {
 
     <>
       <div style={{ height: "100%" }}>
+        <ToastContainer/>
         <Top />
         <div className='d-flex'>
           <div>

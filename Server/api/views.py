@@ -17,6 +17,17 @@ class UserCreateView(generics.CreateAPIView):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    
+    @action(detail=True, methods=['delete'])
+    def delete_product(self, request, pk=None):
+        try:
+            product = self.get_object()
+            product.delete()
+            return Response({'message': 'Product deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+        except Product.DoesNotExist:
+            return Response({'error': 'Product not found'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 class StockViewSet(viewsets.ModelViewSet):
     queryset = Stock.objects.all()

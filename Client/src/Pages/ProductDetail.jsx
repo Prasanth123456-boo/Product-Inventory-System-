@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axiosInstance from '../services/axiosInstance';
 import Top from '../Components/Top';
 import Header from '../Components/Header';
@@ -9,6 +9,7 @@ const ProductDetail = () => {
     const { id } = useParams(); // Get the product ID from the URL params
     const [product, setProduct] = useState(null);
     const [newImage, setNewImage] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -45,6 +46,15 @@ const ProductDetail = () => {
         }
     };
 
+    const handleDeleteProduct = async () => {
+        try {
+            await axiosInstance.delete(`/products/${id}/delete/`);
+            navigate('/');
+        } catch (error) {
+            console.error('Error deleting product:', error);
+        }
+    };
+
     if (!product) {
         return <div>Loading...</div>; // Display a loading indicator while fetching data
     }
@@ -76,6 +86,7 @@ const ProductDetail = () => {
                                     <p><strong>{variant.name}</strong> - {variant.subvariants.map(subvariant => subvariant.option).join(', ')}</p>
                                 </div>
                             ))}
+                            <button className='btn btn-danger' onClick={handleDeleteProduct}>Delete This Product</button>
                         </div>
                     </div>
                 </div>
