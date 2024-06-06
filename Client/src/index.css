@@ -1,0 +1,18 @@
+.active{
+    background-color: rgb(8, 105, 170);
+    border-radius: 5px;
+  
+}
+.active a {
+    color: #fff !important;
+}
+.navbar-right-custom{
+width: calc(100% - 200px);
+margin: 0 auto;
+
+}
+
+.btn-primary-1{
+    background-color: rgb(8, 105, 170) !important;
+    color: #fff !important;
+}
